@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head><!--#网页设置去-->
+    <meta charset="UTF-8">
+    <title>Портфолио разработчика</title><!--#浏览器标签页名字-->
+</head>
+<body><!--#正文显示-->
+    <h1>Портфолио разработчика</h1><!--最大标题-->
+    <p>Мои проекты и ссылки на репозитории</p><!--显示段落-->
+
+    <form method="post"><!--形成一个表单--><!--fflask接受这个post请求-->
+        <input type="text" name="title" placeholder="Название проекта"><!--创建一个文本输入框-->
+        <br><!--换行-->
+        <input type="url" name="repo_link"  placeholder="Ссылка на репозиторий"><!--创建一个新的输入框-->
+    <!--url链接输入-->
+        <br><br>
+        <button>Добавить</button>
+    </form>
+    <h2>Список проектов</h2>
+<!--项目列表耳二级标题-->
+    {% for project in projects_list %}
+
+<!--d对每个项目，重复执行下面的代码-->
+        <div>
+<!--创建一个区块容器，包含当前项目的内容-->
+            <p><strong>{{ project.title }}</strong></p>
+
+            <!--创建一个段落，把项目标题加粗-->
+            <p><a href="{{ project.repo_link }}" target="_blank">{{ project.repo_link }}</a></p>
+
+    <!--a：超链接标签，，href，链接跳转地址就是当前项目的repo——link在新标签中打开链接-->
+            <hr>
+<!--水平分割符-->
+        </div>
+    {% endfor %}<!--结束for 循环-->
+    <br>
+    <br>
+    <form action="/clear" method="post">
+        <button type="submit">Очистить</button>
+    </form>
+
+</body>
+</html>
